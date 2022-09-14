@@ -28,23 +28,25 @@ const checkUserId=(request, response, next) =>{
   next()
 }
     app.get('/users/',(request,response)=> {
-        console.log("Rota de Get chamada")
+        console.log("Rota de Get chamada para mostrar informações")
         return response.json(users)
 })
      app.post('/users/',(request,response)=> {
-        //const user={id:uuid.v4(),name,age}
-
-       // users.push(user)
-       console.log("Rota de Post chamada")
+        const {name,age}=request.body
+        const user={id:uuid.v4(),name,age}
+        users.push(user)
+        console.log("Rota de Post chamada para criar informações")
         return response.status(201).json(users)
       
             
 })
-      app.put('/users/:id',(request,response)=>{
-         const{name,age}=request.body
-         const index=request.userIndex 
-         console.log("Rota de PUT chamada") 
-         const updateUser= {id,name,age}
+      app.put('/users/:id',checkUserId,(request,response)=>{
+        const{name,age}=request.body
+        const index=request.userIndex 
+        const id=request.userId
+         console.log("Rota de PUT chamada para fazer modificações") 
+
+         const updateUser= { id,name,age }
          users[index]=updateUser
         
          return response.json(updateUser)
@@ -55,7 +57,7 @@ const checkUserId=(request, response, next) =>{
         const index=request.userIndex
         
         users.splice(index,1)
-        console.log("Rota de DEL chamada")
+        console.log("Rota de DEL chamada para apagar informações")
         return response.status(204).json()
   
 })
