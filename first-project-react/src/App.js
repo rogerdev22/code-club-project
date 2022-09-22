@@ -1,12 +1,29 @@
-import React from 'react';
+import React from "react" ;
+
+import {Container,H1,Image,ContainerItens,Inputlabel,Input,Button} from "./styles";
+
+import Casal1 from './assets/casal1.svg'
+import Arrow from './assets/arrow.svg'
 
 function App() {
-   const hello="hello React"
   return (
-    <div >
-      <h1>{hello}</h1>
-    </div>
-  );
-}
+    <Container>
+      <Image alt="logo-casal1" src={Casal1}/>
 
-export default App
+         <ContainerItens>
+
+          <H1>Olá</H1>
+
+            <Inputlabel> Nome</Inputlabel>
+            <Input placeholder="Nome"/>
+
+            <Inputlabel>Idade</Inputlabel>
+            <Input placeholder="Idade"/>
+
+            <Button> < img alt= "Seta" src={Arrow}/> </Button>
+         </ContainerItens>
+      </Container>       
+     
+);
+}
+export default App;  
